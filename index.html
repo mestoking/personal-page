@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Writing and reading notes by Kun Li on robot foundation models, 3D perception, and language models.">
+<title>Kun Li — Robotics & AI</title>
+<style>
+:root{color-scheme:light;--ink:#36332e;--muted:#797267;--line:#dcd5c9;--accent:#675b43;--paper:#f2ede3}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-underline-offset:4px}a:hover{color:var(--ink)}button{font:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}[hidden]{display:none!important}.page{max-width:830px;margin:auto;padding:0 32px}.skip{position:absolute;top:-60px;background:var(--paper);padding:8px}.skip:focus{top:0}
+header{padding-top:35px}.masthead{display:flex;align-items:baseline;justify-content:space-between;gap:20px}.name{font-size:21px;font-weight:600;letter-spacing:-.5px;text-decoration:none;color:var(--ink)}.subtitle{font-size:12px;color:var(--muted)}.sketches{width:100%;height:auto;display:block;margin:22px 0 16px;color:#8a8070}.sketches .detail{stroke:#b5aa98;stroke-width:1}.sketches .arm{stroke:currentColor;stroke-width:1.5}.sketches .joint{fill:var(--paper);stroke:currentColor;stroke-width:1.5}.sketches .guide{stroke:#d5cbbc;stroke-width:1;stroke-dasharray:3 5}.sketches text{fill:#988b77;font:9px ui-monospace,monospace;letter-spacing:1px}
+nav{display:flex;flex-wrap:wrap;gap:0 28px;border-bottom:1px solid var(--line)}nav button{border:0;border-bottom:2px solid transparent;background:none;padding:12px 0;margin-bottom:-1px;color:var(--muted);font-size:14px;cursor:pointer}nav button[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}nav button:hover{color:var(--ink)}main{min-height:400px;padding:36px 0 65px}.entry{padding:24px 0;border-top:1px solid var(--line)}.entry:first-of-type{border-top:0;padding-top:0}.entry:last-child{border-bottom:1px solid var(--line)}.entry h2{font-size:19px;font-weight:550;letter-spacing:-.25px;line-height:1.5;margin:0 0 8px}.entry p{color:#6f685d;font-size:14px;line-height:1.8;margin:0 0 10px;max-width:650px}.meta{font-size:11px;color:var(--muted);display:flex;gap:12px;align-items:center}.draft{color:#8c8070}.notice{font-size:12px;color:var(--muted);margin:22px 0 0}.bio p{font-size:15px;margin:20px 0;max-width:680px}.bio .contact{font-size:14px}footer{border-top:1px solid var(--line);padding:20px 0 32px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:16px}
+@media(max-width:560px){.page{padding:0 23px}header{padding-top:26px}.masthead{display:block}.subtitle{margin-top:3px}.sketches{margin:20px 0 10px}nav{gap:28px}main{padding-top:28px}.entry h2{font-size:18px}footer{flex-wrap:wrap}}
+</style>
+<noscript><style>main > section[hidden]{display:block!important}main > section + section{margin-top:45px}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+<header>
+<div class="masthead"><a class="name" href="#robot-foundation-models">Kun Li</a><span class="subtitle">Robotics, language models & 3D vision</span></div>
+<!-- Original inline vector sketches: no image files or external dependencies. -->
+<svg class="sketches" viewBox="0 0 760 177" role="img" aria-labelledby="sketch-title">
+<title id="sketch-title">Three technical line sketches of articulated robot arms in different poses</title>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path class="detail" d="M15 148H745"/>
+<g transform="translate(34 0)">
+<path class="guide" d="M70 137V22M28 70H204M127 38A95 95 0 0 1 196 105"/>
+<path class="arm" d="M43 147V138H97V147M52 138V123Q70 115 88 123V138M61 122 91 76 105 84 80 125M100 73 151 43 160 57 109 89M153 43 181 62 174 73 151 58M176 65 191 72M190 68 200 70 200 81M187 76 193 84 201 85"/>
+<circle class="joint" cx="70" cy="126" r="10"/><circle class="joint" cx="101" cy="81" r="11"/><circle class="joint" cx="154" cy="51" r="9"/>
+<circle class="detail" cx="70" cy="126" r="4"/><circle class="detail" cx="101" cy="81" r="4"/><circle class="detail" cx="154" cy="51" r="3"/>
+<path class="detail" d="m79 117 25-29m5-13 38-23M43 154H97M43 151V157M97 151V157"/>
+<text x="48" y="173">01 / REACH</text>
+</g>
+<g transform="translate(288 0)">
+<path class="guide" d="M85 138V18M25 46H193M51 55A76 76 0 0 1 171 98"/>
+<path class="arm" d="M57 147V138H111V147M67 138V121H101V138M76 122 61 66 77 62 93 120M62 57 109 30 117 44 77 70M110 30 151 63 143 74 108 45M147 68V89M140 89V100L134 105M154 89V100L160 105"/>
+<circle class="joint" cx="84" cy="125" r="10"/><circle class="joint" cx="69" cy="63" r="11"/><circle class="joint" cx="112" cy="38" r="9"/>
+<circle class="detail" cx="84" cy="125" r="4"/><circle class="detail" cx="69" cy="63" r="4"/><circle class="detail" cx="112" cy="38" r="3"/>
+<path class="detail" d="m81 112-11-36m7-16 28-17M135 112H159V133H135Z"/>
+<text x="61" y="173">02 / GRASP</text>
+</g>
+<g transform="translate(543 0)">
+<path class="guide" d="M68 137V20M20 88H195M91 31A88 88 0 0 1 179 118"/>
+<path class="arm" d="M41 147V138H95V147M51 138V122H85V138M59 122 40 81 54 74 75 119M44 71 96 58 100 74 56 87M97 58 143 88 135 100 95 74M139 94 163 101M162 95 177 99 181 108M159 107 171 113 181 112"/>
+<circle class="joint" cx="68" cy="125" r="10"/><circle class="joint" cx="48" cy="79" r="11"/><circle class="joint" cx="98" cy="66" r="9"/>
+<circle class="detail" cx="68" cy="125" r="4"/><circle class="detail" cx="48" cy="79" r="4"/><circle class="detail" cx="98" cy="66" r="3"/>
+<path class="detail" d="m63 114-11-23m8-14 29-8m18 2 27 18M166 126H191V146H166Z"/>
+<text x="45" y="173">03 / PLACE</text>
+</g>
+</g>
+</svg>
+<!-- Menu items are generated from each section's data-label below. -->
+<nav aria-label="Topics"></nav>
+</header>
+<main id="main">
+<section class="bio" data-label="Bio" id="bio" aria-label="Bio" hidden>
+<p>I’m Kun Li, a robotics and AI scientist based in Greater Seattle. My interests span robot perception, robot learning, large language models, and building practical AI systems.</p>
+<p>I’m currently Director of AI at Abby Care. Previously at Amazon, I worked on agentic AI and production machine learning systems. At Amazon Robotics, I designed and built 3D perception for the Robin robotic sorting system.</p>
+<p>I earned my Ph.D. in Electronic Engineering at the Chinese University of Hong Kong and was a postdoctoral scholar at Caltech, working with Joel Burdick on robot learning and inverse reinforcement learning.</p>
+<p>This site is a place for my writing, findings, and experiments.</p>
+<a class="contact" href="mailto:kunliname@gmail.com">kunliname@gmail.com</a>
+</section>
+<!-- To add a topic, duplicate a topic section, give it a unique id,
+     and set data-label. The navigation updates automatically. -->
+<section id="robot-foundation-models" data-label="Robot Foundation Models" aria-label="Robot Foundation Models">
+<!-- Replace these sample entries with your own titles and previews. -->
+<article class="entry"><h2>From language and vision to robot actions</h2><p>A place to explore how robot models connect visual observations and language instructions to actions in the physical world.</p><div class="meta"><span>Vision-language-action models</span><span class="draft">Sample preview</span></div></article>
+<article class="entry"><h2>Learning across tasks and embodiments</h2><p>Questions about robot datasets, transfer between platforms, and how to evaluate generalization beyond familiar settings.</p><div class="meta"><span>Robot learning · Generalization</span><span class="draft">Sample preview</span></div></article>
+<p class="notice">Sample previews for the layout. Original writing and reading notes will appear here.</p>
+</section>
+<section id="3d-perception" data-label="3D Perception" aria-label="3D Perception" hidden>
+<article class="entry"><h2>Seeing the scene, understanding the task</h2><p>A space for findings on 3D representations, pose estimation, sensor fusion, and the information a robot needs to act.</p><div class="meta"><span>3D vision · Robotics</span><span class="draft">Sample preview</span></div></article>
+<p class="notice">Sample preview. Original notes will appear here.</p>
+</section>
+<section id="agentic-systems" data-label="Agentic Systems" aria-label="Agentic Systems" hidden>
+<article class="entry"><h2>From reasoning to useful workflows</h2><p>A place for observations on tool use, model evaluation, and experiments with agents that carry out multi-step tasks.</p><div class="meta"><span>Agents · Evaluation</span><span class="draft">Sample preview</span></div></article>
+<p class="notice">Sample preview. Original notes will appear here.</p>
+</section>
+
+</main>
+<footer><span>Kun Li</span><span>Robotics · LLMs · 3D vision</span></footer>
+</div>
+<script>
+const sections = [...document.querySelectorAll('main > section[data-label]')];
+const navigation = document.querySelector('nav');
+const defaultPage = 'robot-foundation-models';
+const buttons = sections.map(section => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = section.dataset.label;
+  button.dataset.page = section.id;
+  button.setAttribute('aria-controls', section.id);
+  button.addEventListener('click', () => {
+    history.pushState(null, '', '#' + section.id);
+    showPage();
+  });
+  navigation.append(button);
+  return button;
+});
+function showPage() {
+  const requested = location.hash.slice(1);
+  const active = sections.find(section => section.id === requested)
+    || sections.find(section => section.id === defaultPage) || sections[0];
+  sections.forEach(section => { section.hidden = section !== active; });
+  buttons.forEach(button => {
+    if (button.dataset.page === active.id) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+  document.title = 'Kun Li — ' + active.dataset.label;
+}
+window.addEventListener('hashchange', showPage);
+window.addEventListener('popstate', showPage);
+showPage();
+</script>
+</body>
+</html>
